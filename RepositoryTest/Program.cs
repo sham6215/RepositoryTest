@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace RepositoryTest
 {
@@ -17,12 +18,14 @@ namespace RepositoryTest
 
         static void TestRepositories()
         {
+            using (TransactionScope scope = new TransactionScope())
             using (UnitOfWork uow = new UnitOfWork(ConnectionString))
             {
                 var charts = uow.Charts.GetAll().ToList();
                 var vCharts = uow.VesselCharts.GetAll().ToList();
-
-                int i = 0;
+                uow.VesselCharts.Delete(vCharts[0]);
+                var vCharts2 = uow.VesselCharts.GetAll().ToList();
+                scope.Complete();
             }
         }
     }

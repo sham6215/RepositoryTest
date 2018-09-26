@@ -10,6 +10,9 @@ namespace RepositoryTest.Models
     [Table(Name = "chart")]
     public class VesselChart
     {
+        [Column(Name = "vessel_chart_id")]
+        public int VesselChartId { get; set; }
+
         [Column(Name = "id")]
         public int Id { get; set; }
 

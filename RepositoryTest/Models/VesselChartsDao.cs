@@ -51,5 +51,11 @@ ORDER BY prefix, CAST (number AS INTEGER)";
             var charts = cntx.ExecuteQuery<VesselChart>(query).ToList();
             return charts;
         }
+
+        public void deleteVesselBritishCharts(DataContext cntx, VesselChart chart)
+        {
+            string query = $"DELETE FROM vessel_british_chart WHERE id IN ({chart.VesselChartId})";
+            var charts = cntx.ExecuteCommand(query);
+        }
     }
 }

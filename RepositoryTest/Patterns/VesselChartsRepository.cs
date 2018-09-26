@@ -17,14 +17,15 @@ namespace RepositoryTest.Patterns
             Context = context;
         }
 
-        public void Add(VesselChart Entity)
+        public void Add(VesselChart entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(VesselChart Entity)
+        public void Delete(VesselChart entity)
         {
-            throw new NotImplementedException();
+            VesselChartsDao dao = new VesselChartsDao();
+            dao.deleteVesselBritishCharts(Context, entity);
         }
 
         public VesselChart GetById(int id)
